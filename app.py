@@ -90,7 +90,7 @@ st.markdown("""
 # CONFIGURACIÓN DE GROQ (¡Pon tu NUEVA API Key aquí!)
 # ==========================================
 
-GROQ_API_KEY = "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"
+GROQ_API_KEY = st.secrets["GROQ_API_KEY"]
 
 # ==========================================
 # LAS 15 PREGUNTAS DEFINITIVAS
