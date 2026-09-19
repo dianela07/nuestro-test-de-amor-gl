@@ -83,6 +83,20 @@ st.markdown("""
         color: #ff6699 !important;
         font-weight: bold;
     }
+    /* ¡Arreglo mágico para que los textos se lean! */
+p, label, div[data-testid="stWidgetLabel"] p, .stMarkdown p {
+    color: #4a4a4a !important; /* Gris oscuro suave */
+}
+
+/* Asegurar que el texto dentro de las cajas de respuesta sea oscuro */
+.stTextArea textarea {
+    color: #333333 !important;
+}
+
+/* Color de las opciones en el menú desplegable de los lenguajes del amor */
+div[data-baseweb="select"] span {
+    color: #4a4a4a !important;
+}
     </style>
 """, unsafe_allow_html=True)
 
