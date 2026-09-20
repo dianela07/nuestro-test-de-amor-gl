@@ -73,6 +73,25 @@ st.markdown("""
         color: #4a4a4a !important;
         font-weight: bold;
     }
+    /* ¡Arreglo mágico para las tablas en modo oscuro! */
+.stMarkdown table {
+    background-color: rgba(255, 255, 255, 0.85) !important;
+    border-radius: 15px !important;
+    overflow: hidden;
+    border: 2px dashed #ffb3cc !important;
+}
+.stMarkdown th, .stMarkdown td {
+    color: #4a4a4a !important;
+    border-color: #ffb3cc !important;
+    padding: 10px !important;
+}
+.stMarkdown th {
+    background-color: rgba(255, 179, 204, 0.3) !important; /* Un rosita suave para los encabezados */
+    font-weight: bold;
+}
+.stMarkdown tr:nth-child(even) {
+    background-color: rgba(255, 230, 240, 0.5) !important; /* Filas alternas un poco más claras */
+}
     </style>
 """, unsafe_allow_html=True)
 
