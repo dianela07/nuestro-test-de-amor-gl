@@ -10,24 +10,17 @@ st.set_page_config(page_title="Nuestro Test de Amor GL 💖", page_icon="🐱", 
 
 st.markdown("""
     <style>
-    /* Fuente redondeada y tierna */
     @import url('https://fonts.googleapis.com/css2?family=Mali:ital,wght@0,400;0,600;1,400&display=swap');
-    
-    /* Fondo degradado de ensueño */
     .stApp {
         background: linear-gradient(135deg, #ffe6f0 0%, #e6f0ff 50%, #f0e6ff 100%);
         font-family: 'Mali', cursive;
     }
-    
-    /* Títulos con brillo pastel */
     h1, h2, h3 {
         color: #ff6699 !important;
         text-align: center;
         text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.9);
         font-weight: 600;
     }
-    
-    /* Cajas de texto (Text Areas) */
     .stTextArea textarea {
         background-color: rgba(255, 255, 255, 0.85) !important;
         border: 2px dashed #ffb3cc !important;
@@ -42,8 +35,6 @@ st.markdown("""
         border: 2px solid #ff6699 !important;
         box-shadow: 0 0 10px rgba(255, 102, 153, 0.4);
     }
-    
-    /* Botones súper lindos */
     .stButton button {
         background: linear-gradient(90deg, #ff99cc, #ffcc99) !important;
         color: white !important;
@@ -62,16 +53,12 @@ st.markdown("""
         box-shadow: 0 6px 12px rgba(255, 153, 204, 0.6) !important;
         background: linear-gradient(90deg, #ffcc99, #ff99cc) !important;
     }
-    
-    /* Cajas de alerta e info */
     .stAlert {
         background-color: rgba(255, 255, 255, 0.9) !important;
         border-radius: 15px !important;
         border-left: 5px solid #ff6699 !important;
         box-shadow: 0 2px 5px rgba(0,0,0,0.05);
     }
-    
-    /* Selector múltiple (Lenguajes del amor) */
     div[data-baseweb="select"] > div {
         background-color: rgba(255, 255, 255, 0.85) !important;
         border: 2px dashed #ffb3cc !important;
@@ -79,13 +66,9 @@ st.markdown("""
         font-family: 'Mali', cursive;
         color: #5a5a5a !important;
     }
-    
-    /* ¡Arreglo mágico para que los textos generales se lean! */
     p, label, div[data-testid="stWidgetLabel"] p, .stMarkdown p, .stMarkdown li {
         color: #4a4a4a !important; 
     }
-    
-    /* Color de las opciones en el menú desplegable de los lenguajes del amor */
     div[data-baseweb="select"] span {
         color: #4a4a4a !important;
         font-weight: bold;
@@ -138,11 +121,9 @@ if 'respuestas_p1' not in st.session_state:
 st.markdown("<h1>🐱 Test de Compatibilidad GL 🐱</h1>", unsafe_allow_html=True)
 st.markdown("<p style='text-align: center; color: #888; font-size: 18px;'>Para sentirse vistas, entendidas y muy amadas 💖</p>", unsafe_allow_html=True)
 
-# --- PANTALLA DE INICIO ---
 if st.session_state.paso == 0:
     st.subheader("🌸 ¿Quién está usando la app?")
     st.write("Elijan sabiamente. La primera en responder tendrá que enviarle un código a la otra.")
-    
     col1, col2 = st.columns(2)
     with col1:
         if st.button("Soy la primera en responder 💖"):
@@ -153,11 +134,9 @@ if st.session_state.paso == 0:
             st.session_state.paso = 3
             st.rerun()
 
-# --- PASO 1: JUGADORA 1 RESPONDE ---
 elif st.session_state.paso == 1:
     st.subheader("🌸 Turno de la Jugadora 1")
     st.write("Responde con calma y mucha sinceridad. Al terminar, la app te dará un código para que se lo envíes a tu novia.")
-    
     with st.form("form_p1"):
         respuestas = {}
         for i, pregunta in enumerate(PREGUNTAS):
@@ -168,7 +147,6 @@ elif st.session_state.paso == 1:
                 respuestas[str(i)] = f"Lenguajes elegidos: {', '.join(seleccion)}. Explicación: {explicacion}"
             else:
                 respuestas[str(i)] = st.text_area(pregunta, key=f"p1_{i}")
-        
         submit = st.form_submit_button("Generar Código de Amor 💖")
         if submit:
             if any(r.strip() == "" for r in respuestas.values() if "Lenguajes elegidos: ." in r or r.strip() == ""):
@@ -178,24 +156,19 @@ elif st.session_state.paso == 1:
                 st.session_state.paso = 2
                 st.rerun()
 
-# --- PASO 2: JUGADORA 1 GENERA CÓDIGO ---
 elif st.session_state.paso == 2:
     st.subheader("✨ ¡Respuestas guardadas! ✨")
     st.write("Copia este **Código de Amor** y envíaselo a tu novia por WhatsApp. Ella deberá abrir la app, elegir la opción 'Ya tengo el código' y pegarlo.")
-    
     codigo = base64.b64encode(json.dumps(st.session_state.respuestas_p1).encode()).decode()
     st.code(codigo, language="text")
-    
     st.info("💡 Una vez que se lo hayas enviado, ella podrá responder sus preguntas y verán el resultado juntas.")
     if st.button("Volver al inicio 🔄"):
         st.session_state.clear()
         st.rerun()
 
-# --- PASO 3: JUGADORA 2 INGRESA CÓDIGO ---
 elif st.session_state.paso == 3:
     st.subheader("🐰 Pega el Código de Amor")
     st.write("Pega aquí el código que te envió tu novia por WhatsApp para desbloquear tus preguntas.")
-    
     codigo_input = st.text_area("Pega el código aquí:")
     if st.button("Desbloquear preguntas 🔓"):
         try:
@@ -206,11 +179,9 @@ elif st.session_state.paso == 3:
         except Exception as e:
             st.error("El código no es válido. Asegúrate de copiar todo el texto, sin espacios extra. 🥺")
 
-# --- PASO 4: JUGADORA 2 RESPONDE ---
 elif st.session_state.paso == 4:
     st.subheader("🐰 Turno de la Jugadora 2")
     st.write("¡Código aceptado! Ahora te toca a ti, mi amor. Responde con sinceridad.")
-    
     with st.form("form_p2"):
         respuestas_p2 = {}
         for i, pregunta in enumerate(PREGUNTAS):
@@ -221,7 +192,6 @@ elif st.session_state.paso == 4:
                 respuestas_p2[str(i)] = f"Lenguajes elegidos: {', '.join(seleccion)}. Explicación: {explicacion}"
             else:
                 respuestas_p2[str(i)] = st.text_area(pregunta, key=f"p2_{i}")
-        
         submit = st.form_submit_button("Calcular nuestra compatibilidad 💞")
         if submit:
             if any(r.strip() == "" for r in respuestas_p2.values() if "Lenguajes elegidos: ." in r or r.strip() == ""):
@@ -231,14 +201,11 @@ elif st.session_state.paso == 4:
                 st.session_state.paso = 5
                 st.rerun()
 
-# --- PASO 5: RESULTADOS MÁGICOS ---
 elif st.session_state.paso == 5:
     st.subheader("🔮 Analizando su conexión...")
-    
     with st.spinner("Invocando a la IA del amor... 🐱✨"):
         try:
             client = Groq(api_key=GROQ_API_KEY)
-            
             texto_p1 = "\n".join([f"{PREGUNTAS[i]}: {st.session_state.respuestas_p1[str(i)]}" for i in range(len(PREGUNTAS))])
             texto_p2 = "\n".join([f"{PREGUNTAS[i]}: {st.session_state.respuestas_p2[str(i)]}" for i in range(len(PREGUNTAS))])
             
@@ -265,7 +232,12 @@ elif st.session_state.paso == 5:
             
             chat_completion = client.chat.completions.create(
                 messages=[{"role": "user", "content": prompt}],
-                model="qwen/qwen3-32b",
+                model="openai/gpt-oss-120b", # <--- El nuevo modelo que encontraste
+                temperature=1,
+                max_completion_tokens=2048,
+                top_p=1,
+                reasoning_effort="medium",
+                stop=None
             )
             
             resultado = chat_completion.choices[0].message.content
