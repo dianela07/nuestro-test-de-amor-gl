@@ -173,9 +173,9 @@ elif st.session_state.paso == 1:
                 st.markdown(f"**{pregunta}**")
                 seleccion = st.multiselect("Elige tus principales:", OPCIONES_AMOR, key=f"p1_{i}")
                 explicacion = st.text_area("¿Cómo se ve esto en la práctica? (Opcional)", key=f"p1_extra_{i}")
-                respuestas[i] = f"Lenguajes elegidos: {', '.join(seleccion)}. Explicación: {explicacion}"
+                respuestas[str(i)] = f"Lenguajes elegidos: {', '.join(seleccion)}. Explicación: {explicacion}"
             else:
-                respuestas[i] = st.text_area(pregunta, key=f"p1_{i}")
+                respuestas[str(i)] = st.text_area(pregunta, key=f"p1_{i}")
         
         submit = st.form_submit_button("Generar Código de Amor 💖")
         if submit:
@@ -226,9 +226,9 @@ elif st.session_state.paso == 4:
                 st.markdown(f"**{pregunta}**")
                 seleccion = st.multiselect("Elige tus principales:", OPCIONES_AMOR, key=f"p2_{i}")
                 explicacion = st.text_area("¿Cómo se ve esto en la práctica? (Opcional)", key=f"p2_extra_{i}")
-                respuestas_p2[i] = f"Lenguajes elegidos: {', '.join(seleccion)}. Explicación: {explicacion}"
+                respuestas_p2[str(i)] = f"Lenguajes elegidos: {', '.join(seleccion)}. Explicación: {explicacion}"
             else:
-                respuestas_p2[i] = st.text_area(pregunta, key=f"p2_{i}")
+                respuestas_p2[str(i)] = st.text_area(pregunta, key=f"p2_{i}")
         
         submit = st.form_submit_button("Calcular nuestra compatibilidad 💞")
         if submit:
